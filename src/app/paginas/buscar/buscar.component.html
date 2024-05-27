@@ -1,0 +1,13 @@
+<div>
+    <h2>Resultados de búsqueda para "{{ query }}"</h2>
+    <div *ngIf="results.length; else noResults">
+      <div *ngFor="let result of results">
+        <!-- Renderiza tu resultado de búsqueda aquí -->
+        <p>{{ result.title }}</p>
+      </div>
+    </div>
+    <ng-template #noResults>
+      <p>No se encontraron resultados</p>
+    </ng-template>
+  </div>
+  
