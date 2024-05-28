@@ -1,13 +1,36 @@
-<div>
+<!-- <div>
     <h2>Resultados de búsqueda para "{{ query }}"</h2>
     <div *ngIf="results.length; else noResults">
       <div *ngFor="let result of results">
-        <!-- Renderiza tu resultado de búsqueda aquí -->
-        <p>{{ result.title }}</p>
+         Renderiza tu resultado de búsqueda aquí 
+        <div class="contenedor-producto">
+          <h2 class="titulo">{{result.title}}</h2>
+          <div class="contenedor-imagen">
+            <img src="{{result.image}}" alt="">
+          </div>
+          <div>
+            <span class="clasificacion-titulo">Clasificación: </span><span>{{result.rating.rate}}</span>
+          </div>
+          <p>{{result.description}}</p>
+          <div>
+            <span>Precio:</span><span>{{result.price}}</span>
+          </div>
+          <a [routerLink]="['/detalles', result.id]">Ver detalles</a>
+         </div>
       </div>
     </div>
     <ng-template #noResults>
       <p>No se encontraron resultados</p>
     </ng-template>
-  </div>
+  </div> -->
+
+  <div class="contenedor-productos">
+    @for ( producto of results; track producto.id){
+      <div>
+        <app-producto [producto]="producto" ></app-producto>
+      </div>
+    } @empty {
+      <p>No existen productos</p>
+    }
+   </div>
   
