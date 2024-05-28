@@ -1,12 +1,15 @@
-.contenedor-productos{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    flex-wrap: wrap;
-    div{
-      flex-basis: 25%;
-      flex-grow: 1;
-      flex-shrink: 1;
-    }
-   }
-   
+.contenedor-productos {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center; // Centra los productos en el contenedor
+
+  div {
+    flex-basis: 23%; // Ajusta esto según el número de columnas que desees
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 23%;
+    box-sizing: border-box; // Asegura que el padding y border estén incluidos en el ancho total
+  }
+}
