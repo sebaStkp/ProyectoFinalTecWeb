@@ -44,3 +44,25 @@
     }
   }
 }
+
+.carrito-pestana {
+  position: fixed;
+  top: 0;
+  right: -300px;  // Inicialmente oculto
+  width: 300px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  transition: right 0.3s;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.carrito-pestana.visible {
+  right: 0;  // Visible cuando se añade la clase visible
+}
+
+.carrito-pestana .close-btn {
+  margin: 16px;
+}
+

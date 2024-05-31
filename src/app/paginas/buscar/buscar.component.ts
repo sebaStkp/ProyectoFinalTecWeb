@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Producto } from '../../interfaces/product';
@@ -12,15 +12,20 @@ import { ProductoComponent } from '../../elementos/producto/producto.component';
   templateUrl: './buscar.component.html',
   styleUrls: ['./buscar.component.scss']
 })
+
+
 export class BuscarComponent implements OnInit {
   query: string = '';
   results: Producto[] = []; // Ajusta el tipo según la estructura de tus datos
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.query = params['q'];
+      if(this.query.trim()){
+        this.router.navigate(['/tienda'])
+      }
       this.search(this.query);
     });
   }

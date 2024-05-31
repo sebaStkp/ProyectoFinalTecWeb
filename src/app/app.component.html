@@ -4,6 +4,21 @@
   <a [routerLink]="['nosotros']" routerLinkActive="active">Nosotros</a>
   <a [routerLink]="['contactanos']" routerLinkActive="active">Contactanos</a>
   
-  <input type="text" placeholder="Buscar..." [formControl]="searchControl" (keyup.enter)="onSearch()" />
+  <input type="text" placeholder="Buscar..." [formControl]="searchControl" (input)="onSearch()"/>
+  <button (click)="toggleShoppingDiv()">
+    <span>Items en carrito</span>
+    <span>  {{items}}</span>
+  </button>
 </div>
+
+
 <router-outlet></router-outlet>
+
+
+
+
+<div class="carrito-pestana" [class.visible]="showShoppingDiv"> <!-- clase.visible es para añadir el css posteriormente -->
+  <button class="close-btn" (click)="toggleShoppingDiv()">Close</button>
+  <app-carrito *ngIf="showShoppingDiv"></app-carrito>
+</div>
+

@@ -13,6 +13,11 @@
     <div>
       <span>Precio:</span><span>{{producto.price}}</span>
     </div>
-    <a [routerLink]="['/detalles', producto.id]">Ver detalles</a>
-   </div>
+    <div class="cont-botones">
+      <a [routerLink]="['/detalles', producto.id]">Ver detalles</a>
+      <button *ngIf="!isInCart()" (click)="aniadirAlCarrito()">Añadir</button>   <!-- si NO esta en el carrito añadido aparece añadir -->
+      <button *ngIf="isInCart()" (click)="eliminarItemCarrito()">Eliminar</button>   <!-- si ya esta en el carrito añadido aparece eliminar -->
+    </div>
+
+</div>
    
