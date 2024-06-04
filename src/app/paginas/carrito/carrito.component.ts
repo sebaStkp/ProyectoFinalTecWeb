@@ -9,16 +9,33 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ProductoComponent, CommonModule],
   templateUrl: './carrito.component.html',
-  styleUrl: './carrito.component.scss'
+  styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent {
   items: number = 0;
   carrito: Producto[] = [];
   appComponent: AppComponent = inject(AppComponent);
 
-  ngOnInit() { // se asignan valores en ngOnInit
-    this.carrito = this.appComponent.getCarrito();
+  ngOnInit() {
+    this.carrito = this.appComponent.getCarrito().map(producto => ({ ...producto, cantidad: 1 }));
     this.items = this.carrito.length;
   }
 
+  incrementarCantidad(producto: Producto) {
+    producto.cantidad++;
+  }
+
+  decrementarCantidad(producto: Producto) {
+    if (producto.cantidad > 1) {
+      producto.cantidad--;
+    }
+  }
+
+  calcularTotal(): number {
+    return this.carrito.reduce((total, producto) => total + producto.price * producto.cantidad, 0);
+  }
+
+  trackById(index: number, item: Producto): number {
+    return item.id;
+  }
 }

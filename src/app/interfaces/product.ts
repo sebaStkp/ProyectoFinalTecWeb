@@ -10,5 +10,6 @@ export interface Rating{
     category: string;
     image: string;
     rating: Rating;
+    cantidad: number;
    }
    
