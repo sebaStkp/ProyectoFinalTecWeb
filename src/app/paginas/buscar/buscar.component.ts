@@ -23,7 +23,7 @@ export class BuscarComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.query = params['q'];
-      if(this.query.trim()){
+      if(this.query.length == 0){
         this.router.navigate(['/tienda'])
       }
       this.search(this.query);
@@ -33,6 +33,7 @@ export class BuscarComponent implements OnInit {
   search(query: string) {
     const url = `https://fakestoreapi.com/products`; // URL de ejemplo, ajústala según tus necesidades
     this.http.get<Producto[]>(url).subscribe((data) => {
+      
       this.results = data.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
     });
   }

@@ -22,6 +22,12 @@ export class TiendaComponent {
       data => this.listaDeProductos = data)
   
 }
+actualizarProductos(productosNew: Producto[]){
+  this.listaDeProductos= productosNew;
+}
+getProductosActuales(){
+  return this.listaDeProductos
+}
 
 
 }

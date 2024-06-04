@@ -32,6 +32,7 @@ toggleShoppingDiv() {
     const query = this.searchControl.value;
     if (query) {
       this.router.navigate(['/buscar'], { queryParams: { q: query } });
+      
     }
   }
   añadirAlCarrito(producto: Producto) { 

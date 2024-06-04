@@ -18,5 +18,5 @@ export class ProductoService {
  }
  obtenerProductoPorId(id: number){
    return this.http.get<Producto>(this.url+'/'+id)
-}
+ }
 }
