@@ -1,15 +1,14 @@
-
 <div>
   <h1>Shopping</h1>
   <span class="items">{{ items }}</span>
   <span> Items</span>
 </div>
 
-@for (producto of carrito; track producto.id) {
-  <div class="contenedor-producto">
-    <h2 class="titulo">{{producto.title}}</h2>
+<div *ngIf="carrito.length > 0; else noProductos">
+  <div *ngFor="let producto of carrito; trackBy: trackById" class="contenedor-producto">
+    <h2 class="titulo">{{ producto.title }}</h2>
     <div class="contenedor-imagen">
-      <img src="{{producto.image}}" alt="">
+      <img [src]="producto.image" alt="">
     </div>
     <span>Precio: {{ producto.price }}</span>
     <div class="cantidad-control">
@@ -21,7 +20,8 @@
   <div class="total">
     <span>Total a pagar: {{ calcularTotal() | currency }}</span>
   </div>
-} @empty {
-  <p>No existen productos</p>
-}
+</div>
 
+<ng-template #noProductos>
+  <p>No existen productos</p>
+</ng-template>
