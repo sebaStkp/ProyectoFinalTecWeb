@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Producto} from "../../interfaces/product";
 import {ProductoService} from "../../servicios/producto.service";
+import { AppComponent } from '../../app.component';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class DetallesComponent {
  route: ActivatedRoute = inject(ActivatedRoute);
  productoService: ProductoService = inject(ProductoService);
  detalleProducto: Producto | undefined;
+
+ appComponent:AppComponent=inject(AppComponent);
  constructor() {
   const idProducto = Number(this.route.snapshot.params['id']);
   // this.detalleProducto = this.productoService.obtenerProductoPorId(idProducto)

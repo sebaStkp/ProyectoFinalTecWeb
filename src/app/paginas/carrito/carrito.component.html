@@ -5,13 +5,13 @@
       <span> Items</span>
     </div>
     @for ( producto of carrito; track producto.id){
-    <div>
+    <div class="contenedor-producto">
         <h2 class="titulo">{{producto.title}}</h2>
         <div class="contenedor-imagen">
         <img src="{{producto.image}}" alt="">
-      
+
     </div>
-    <span>Precio:</span><span>{{producto.price}}</span>
+    <span>Precio: {{producto.price}}</span>
     </div>
     } @empty {
       <p>No existen productos</p>

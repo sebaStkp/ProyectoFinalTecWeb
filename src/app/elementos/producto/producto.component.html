@@ -2,10 +2,10 @@
     <h2 class="titulo">{{producto.title}}</h2>
     <div class="contenedor-imagen">
       <img src="{{producto.image}}" alt="">
-      
+
     </div>
-   
-   
+
+
     <div>
       <span class="clasificacion-titulo">Clasificación: </span><span>{{producto.rating.rate}}</span>
     </div>
@@ -14,10 +14,10 @@
       <span>Precio:</span><span>{{producto.price}}</span>
     </div>
     <div class="cont-botones">
-      <a [routerLink]="['/detalles', producto.id]">Ver detalles</a>
+      <button [routerLink]="['/detalles', producto.id]">Ver detalles</button>
       <button *ngIf="!isInCart()" (click)="aniadirAlCarrito()">Añadir</button>   <!-- si NO esta en el carrito añadido aparece añadir -->
       <button *ngIf="isInCart()" (click)="eliminarItemCarrito()">Eliminar</button>   <!-- si ya esta en el carrito añadido aparece eliminar -->
     </div>
 
 </div>
-   
+
