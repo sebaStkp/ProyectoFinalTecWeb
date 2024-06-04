@@ -3,12 +3,13 @@ import {ActivatedRoute} from "@angular/router";
 import {Producto} from "../../interfaces/product";
 import {ProductoService} from "../../servicios/producto.service";
 import { AppComponent } from '../../app.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
  selector: 'app-detalles',
  standalone: true,
- imports: [],
+ imports: [CommonModule],
  templateUrl: './detalles.component.html',
  styleUrl: './detalles.component.scss'
 })
@@ -18,6 +19,7 @@ export class DetallesComponent {
  detalleProducto: Producto | undefined;
 
  appComponent:AppComponent=inject(AppComponent);
+ @Input() producto!: Producto;
  constructor() {
   const idProducto = Number(this.route.snapshot.params['id']);
   // this.detalleProducto = this.productoService.obtenerProductoPorId(idProducto)
@@ -25,5 +27,18 @@ export class DetallesComponent {
     data => this.detalleProducto = data
   )
 }
-
+aniadirAlCarrito() {
+  if (!this.appComponent.isInCart(this.producto)) {
+      this.appComponent.añadirAlCarrito(this.producto);
+  }
 }
+eliminarItemCarrito() {
+  if (this.appComponent.isInCart(this.producto)) {
+      this.appComponent.eliminarItemCarrito(this.producto);
+}
+}
+isInCart(): boolean {
+  return this.appComponent.isInCart(this.producto); // verifico que este en el carrito para manipular los botones
+}
+
+} 

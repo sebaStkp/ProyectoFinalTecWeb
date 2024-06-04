@@ -6,12 +6,14 @@ import { ContactanosComponent } from './paginas/contactanos/contactanos.componen
 import { PaginaNoEncontradaComponent } from './paginas/pagina-no-encontrada/pagina-no-encontrada.component';
 import { DetallesComponent } from './paginas/detalles/detalles.component';
 import { BuscarComponent } from './paginas/buscar/buscar.component';
+import { LogginComponent } from './paginas/loggin/loggin.component';
 export const routes: Routes = [
-    { path: 'inicio', component: InicioComponent },
+    { path: 'inicio', component: LogginComponent },
     { path: 'tienda', component: TiendaComponent },
     { path: 'nosotros', component: NosotrosComponent },
     { path: 'contactanos', component: ContactanosComponent },
-    { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+    { path: 'loggin', component: LogginComponent },
+    { path: '', redirectTo: 'loggin', pathMatch: 'full' },
     { path: 'detalles/:id', component: DetallesComponent },
     { path: 'buscar', component: BuscarComponent },
     { path: '**', component: PaginaNoEncontradaComponent }
