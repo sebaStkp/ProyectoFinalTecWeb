@@ -17,10 +17,6 @@ export class LogginComponent {
   constructor(private router: Router) { }
 
   enviarFormulario(email: string, password: string) {
-
-    console.log('Correo Electrónico:', email);
-    console.log('Contraseña:', password);
-
     this.emailInput.nativeElement.value = '';
     this.passwordInput.nativeElement.value = '';
   }

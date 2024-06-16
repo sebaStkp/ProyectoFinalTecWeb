@@ -3,6 +3,7 @@ import {Producto} from "../../interfaces/product";
 import {RouterLink} from "@angular/router";
 import { AppComponent } from '../../app.component';
 import { CommonModule } from '@angular/common';
+import { CarritoService } from '../../servicios/carrito.service';
 
 
 @Component({
@@ -14,20 +15,17 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductoComponent {
  @Input() producto!: Producto;
- appComponent: AppComponent = inject(AppComponent);// para acceder al actual appConponent
+ private carritoService: CarritoService = inject(CarritoService);
 
- aniadirAlCarrito() {
-    if (!this.appComponent.isInCart(this.producto)) {
-        this.appComponent.añadirAlCarrito(this.producto);
-    }
+  aniadirAlCarrito() {
+    this.carritoService.aniadirAlCarrito(this.producto);
   }
+
   eliminarItemCarrito() {
-    if (this.appComponent.isInCart(this.producto)) {
-        this.appComponent.eliminarItemCarrito(this.producto);
+    this.carritoService.eliminarItemCarrito(this.producto);
   }
-}
 
   isInCart(): boolean {
-    return this.appComponent.isInCart(this.producto); // verifico que este en el carrito para manipular los botones
+    return this.carritoService.isInCart(this.producto);
   }
 }

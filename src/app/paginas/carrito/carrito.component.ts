@@ -15,27 +15,28 @@ export class CarritoComponent {
   items: number = 0;
   carrito: Producto[] = [];
   appComponent: AppComponent = inject(AppComponent);
+  noProductos: boolean = false;
 
   ngOnInit() {
     this.carrito = this.appComponent.getCarrito().map(producto => ({ ...producto, cantidad: 1 }));
     this.items = this.carrito.length;
   }
 
-  incrementarCantidad(producto: Producto) {
-    producto.cantidad++;
-  }
+  // incrementarCantidad(producto: Producto) {
+  //   producto.cantidad++;
+  // }
 
-  decrementarCantidad(producto: Producto) {
-    if (producto.cantidad > 1) {
-      producto.cantidad--;
-    }
-  }
+  // decrementarCantidad(producto: Producto) {
+  //   if (producto.cantidad > 1) {
+  //     producto.cantidad--;
+  //   }
+  // }
 
-  calcularTotal(): number {
-    return this.carrito.reduce((total, producto) => total + producto.price * producto.cantidad, 0);
-  }
+  // calcularTotal(): number {
+  //   return this.carrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
+  // }
 
   trackById(index: number, item: Producto): number {
-    return item.id;
+    return item.id_producto;
   }
 }

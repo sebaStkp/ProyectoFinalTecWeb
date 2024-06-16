@@ -4,14 +4,14 @@
   <span> Items</span>
 </div>
 
-<div *ngIf="carrito.length > 0; else noProductos">
+<div *ngIf="carrito.length > 0">
   <div *ngFor="let producto of carrito; trackBy: trackById" class="contenedor-producto">
-    <h2 class="titulo">{{ producto.title }}</h2>
+    <h2 class="titulo">{{ producto.nombre }}</h2>
     <div class="contenedor-imagen">
-      <img [src]="producto.image" alt="">
+      <img [src]="producto.link" alt="">
     </div>
-    <span>Precio: {{ producto.price }}</span>
-    <div class="cantidad-control">
+    <span>Precio: {{ producto.precio }}</span>
+    <!-- <div class="cantidad-control">
       <button (click)="decrementarCantidad(producto)">-</button>
       <span>{{ producto.cantidad }}</span>
       <button (click)="incrementarCantidad(producto)">+</button>
@@ -19,9 +19,10 @@
   </div>
   <div class="total">
     <span>Total a pagar: {{ calcularTotal() | currency }}</span>
-  </div>
+  </div> -->
 </div>
 
-<ng-template #noProductos>
-  <p>No existen productos</p>
-</ng-template>
+<div *ngIf="items === 0">
+  No hay productos en el carrito.
+</div>
+

@@ -1,23 +1,19 @@
 <div class="contenedor-producto">
-    <h2 class="titulo">{{producto.title}}</h2>
-    <div class="contenedor-imagen">
-      <img src="{{producto.image}}" alt="">
+  <h2 class="titulo">{{ producto.nombre }}</h2>
+  <div class="contenedor-imagen">
+      <!-- Utiliza [src] para enlazar dinámicamente la URL de la imagen desde producto.link -->
+      <img [src]="producto.link" alt="{{ producto.nombre }}">
+  </div>
 
-    </div>
-
-
-    <div>
-      <span class="clasificacion-titulo">Clasificación: </span><span>{{producto.rating.rate}}</span>
-    </div>
-    <p>{{producto.description}}</p>
-    <div>
-      <span>Precio:</span><span>{{producto.price}}</span>
-    </div>
-    <div class="cont-botones">
-      <button [routerLink]="['/detalles', producto.id]">Ver detalles</button>
-      <button *ngIf="!isInCart()" (click)="aniadirAlCarrito()">Añadir</button>   <!-- si NO esta en el carrito añadido aparece añadir -->
-      <button *ngIf="isInCart()" (click)="eliminarItemCarrito()">Eliminar</button>   <!-- si ya esta en el carrito añadido aparece eliminar -->
-    </div>
-
+  <p>{{ producto.categoria }}</p>
+  <div>
+      <span>Precio:</span><span>{{ producto.precio }}</span>
+  </div>
+  <div class="cont-botones">
+      <!-- Utiliza [routerLink] para enlazar dinámicamente el enlace basado en producto.id_producto -->
+      <button [routerLink]="['/detalles', producto.id_producto]">Ver detalles</button>
+      <!-- Usa *ngIf para mostrar u ocultar el botón según el estado de isInCart() -->
+      <button *ngIf="!isInCart()" (click)="aniadirAlCarrito()">Añadir</button>
+      <button *ngIf="isInCart()" (click)="eliminarItemCarrito()">Eliminar</button>
+  </div>
 </div>
-

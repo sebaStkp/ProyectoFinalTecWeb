@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Producto } from '../../interfaces/product';
 import { ProductoComponent } from '../../elementos/producto/producto.component';
+import { BuscarService } from '../../servicios/buscar.service';
 
 @Component({
   selector: 'app-buscar',
@@ -17,8 +18,12 @@ import { ProductoComponent } from '../../elementos/producto/producto.component';
 export class BuscarComponent implements OnInit {
   query: string = '';
   results: Producto[] = []; // Ajusta el tipo según la estructura de tus datos
-
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
+  buscarService: BuscarService = inject(BuscarService)
+  constructor(
+    private route: ActivatedRoute, 
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -31,10 +36,7 @@ export class BuscarComponent implements OnInit {
   }
 
   search(query: string) {
-    const url = `https://fakestoreapi.com/products`; // URL de ejemplo, ajústala según tus necesidades
-    this.http.get<Producto[]>(url).subscribe((data) => {
-      
-      this.results = data.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
+    this.buscarService.search(query).subscribe((data)=>{
+      this.results= data
     });
-  }
-}
+  }}

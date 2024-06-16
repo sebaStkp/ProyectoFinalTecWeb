@@ -17,17 +17,29 @@ export class TiendaComponent {
   productoService: ProductoService = inject(ProductoService);
 
   
-  constructor() {
+  ngOnInit(): void {
+    this.obtenerProductos();
+  }
+
+  obtenerProductos(): void {
     this.productoService.obtenerTodosLosProductos().subscribe(
-      data => this.listaDeProductos = data)
-  
-}
-actualizarProductos(productosNew: Producto[]){
-  this.listaDeProductos= productosNew;
-}
-getProductosActuales(){
-  return this.listaDeProductos
-}
+      (data: Producto[][]) => {
+        // Concatenar todos los arrays de productos en uno solo
+        this.listaDeProductos = data.reduce((acc, array) => acc.concat(array), []);
+        console.log(data);
+      },
+      error => {
+        console.error('Error al obtener los productos', error);
+        // Manejar el error de manera apropiada, por ejemplo, mostrando un mensaje al usuario
+      }
+    );
+  }
 
+  actualizarProductos(productosNew: Producto[]): void {
+    this.listaDeProductos = productosNew;
+  }
 
+  getProductosActuales(): Producto[] {
+    return this.listaDeProductos;
+  }
 }

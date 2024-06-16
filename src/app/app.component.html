@@ -7,18 +7,18 @@
   <input type="text" placeholder="Buscar..." [formControl]="searchControl" (input)="onSearch()"/>
   <button (click)="toggleShoppingDiv()">
     <span>Items en carrito</span>
-    <span>  {{items}}</span>
+    <span>  {{getItemsCount()}}</span>
   </button>
 </div>
-
-
-<router-outlet></router-outlet>
-
-
-
 
 <div class="carrito-pestana" [class.visible]="showShoppingDiv"> <!-- clase.visible es para añadir el css posteriormente -->
   <button class="close-btn" (click)="toggleShoppingDiv()">Close</button>
   <app-carrito *ngIf="showShoppingDiv"></app-carrito>
 </div>
+<router-outlet></router-outlet>
+
+
+
+
+
 
