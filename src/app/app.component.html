@@ -4,6 +4,10 @@
   <a [routerLink]="['nosotros']" routerLinkActive="active">Nosotros</a>
   <a [routerLink]="['contactanos']" routerLinkActive="active">Contactanos</a>
 
+<button>
+  <span>Añadir elemento</span>
+</button>
+
   <input type="text" placeholder="Buscar..." [formControl]="searchControl" (input)="onSearch()"/>
   <button (click)="toggleShoppingDiv()">
     <span>Items en carrito</span>
@@ -15,6 +19,7 @@
   <button class="close-btn" (click)="toggleShoppingDiv()">Close</button>
   <app-carrito *ngIf="showShoppingDiv"></app-carrito>
 </div>
+
 <router-outlet></router-outlet>
 
 

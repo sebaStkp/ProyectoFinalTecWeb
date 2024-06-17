@@ -21,7 +21,7 @@ export class ProductoService {
     'http://localhost:3000/snacks'
   ];
 
-  private url = 'http://localhost:3000/productos'; // URL base para productos individuales
+  private url = 'http://localhost:3000/productos'; 
 
   constructor(private http: HttpClient) {}
 
@@ -35,4 +35,5 @@ export class ProductoService {
   obtenerProductoPorId(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${this.url}/${id}`);
   }
+
 }

@@ -8,10 +8,11 @@ import { ProductoComponent } from './elementos/producto/producto.component';
 import { CarritoComponent } from './paginas/carrito/carrito.component';
 import { CarritoService } from './servicios/carrito.service';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule, ProductoComponent, CarritoComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule, ProductoComponent, CarritoComponent ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -59,5 +60,6 @@ export class AppComponent {
   getItemsCount(): number {
     return this.carritoService.getItemsCount();
   }
+
 
 }
