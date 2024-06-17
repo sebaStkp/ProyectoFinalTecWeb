@@ -17,7 +17,7 @@ export class LogginComponent {
     this.http.post('http://localhost:3000/api/login', { email, password })
       .subscribe((response: any) => {
         if (response.success) {
-          this.router.navigate(['/tienda']);
+          this.router.navigate(['/inicio']);
         } else {
           alert('Invalid credentials');
         }

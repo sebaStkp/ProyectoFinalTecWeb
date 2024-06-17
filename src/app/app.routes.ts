@@ -9,7 +9,7 @@ import { BuscarComponent } from './paginas/buscar/buscar.component';
 import { LogginComponent } from './paginas/loggin/loggin.component';
 import { FormularioProductoComponent } from './paginas/formulario-producto/formulario-producto.component';
 export const routes: Routes = [
-    { path: 'inicio', component: LogginComponent },
+    { path: 'inicio', component: InicioComponent },
     { path: 'tienda', component: TiendaComponent },
     { path: 'nosotros', component: NosotrosComponent },
     { path: 'contactanos', component: ContactanosComponent },

@@ -1,18 +1,13 @@
 <div class="topnav">
   <a [routerLink]="['inicio']" routerLinkActive="active">Inicio</a>
   <a [routerLink]="['tienda']" routerLinkActive="active">Tienda</a>
-  <a [routerLink]="['nosotros']" routerLinkActive="active">Nosotros</a>
   <a [routerLink]="['contactanos']" routerLinkActive="active">Contactanos</a>
-
-<button>
-  <span>Añadir elemento</span>
-</button>
+  <a [routerLink]="['aniadir']" routerLinkActive="active">Añadir Producto</a>
 
   <input type="text" placeholder="Buscar..." [formControl]="searchControl" (input)="onSearch()"/>
-  <button (click)="toggleShoppingDiv()">
-    <span>Items en carrito</span>
-    <span>  {{getItemsCount()}}</span>
-  </button>
+  <a (click)="toggleShoppingDiv()">Carrito {{getItemsCount()}}</a>
+
+
 </div>
 
 <div class="carrito-pestana" [class.visible]="showShoppingDiv"> <!-- clase.visible es para añadir el css posteriormente -->
