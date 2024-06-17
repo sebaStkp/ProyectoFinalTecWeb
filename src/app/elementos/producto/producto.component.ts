@@ -15,6 +15,9 @@ import { CarritoService } from '../../servicios/carrito.service';
 })
 export class ProductoComponent {
  @Input() producto!: Producto;
+ constructor(){
+  
+ }
  private carritoService: CarritoService = inject(CarritoService);
 
   aniadirAlCarrito() {

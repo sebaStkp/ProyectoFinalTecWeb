@@ -1,20 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable, forkJoin} from "rxjs";
-import {Producto} from "../interfaces/product";
-
+import { HttpClient } from '@angular/common/http';
+import { Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Producto } from '../interfaces/product';
 
 @Injectable({
- providedIn: 'root'
+  providedIn: 'root'
 })
 export class ProductoService {
- url = 'https://fakestoreapi.com/products';
- constructor( private http: HttpClient ){
- }
-
-
- obtenerTodosLosProductos(): Observable<any[]> {
-  const urls = [
+  private urls = [
     'http://localhost:3000/carnes',
     'http://localhost:3000/bebidas',
     'http://localhost:3000/cosmeticos',
@@ -24,17 +18,21 @@ export class ProductoService {
     'http://localhost:3000/panaderia',
     'http://localhost:3000/ropa',
     'http://localhost:3000/medicamentos',
-    'http://localhost:3000/carnes',
     'http://localhost:3000/snacks'
   ];
 
-  // Realizar las solicitudes HTTP y combinarlas con forkJoin
-  const requests = urls.map(url => this.http.get<any[]>(url));
+  private url = 'http://localhost:3000/productos'; // URL base para productos individuales
 
-  return forkJoin(requests);
+  constructor(private http: HttpClient) {}
 
-}
- obtenerProductoPorId(id: number){
-   return this.http.get<Producto>(this.url+'/'+id)
- }
+  obtenerTodosLosProductos(): Observable<Producto[]> {
+    const requests = this.urls.map(url => this.http.get<Producto[]>(url));
+    return forkJoin(requests).pipe(
+      map((responses: Producto[][]) => responses.flat())
+    );
+  }
+
+  obtenerProductoPorId(id: number): Observable<Producto> {
+    return this.http.get<Producto>(`${this.url}/${id}`);
+  }
 }

@@ -1,32 +1,31 @@
-import { Component, inject } from '@angular/core';
-import {ProductoComponent} from "../../elementos/producto/producto.component";
-import {Producto} from "../../interfaces/product";
-import {ProductoService} from "../../servicios/producto.service";
+import { Component, OnInit, inject } from '@angular/core';
+import { ProductoComponent } from "../../elementos/producto/producto.component";
+import { Producto } from "../../interfaces/product";
+import { ProductoService } from "../../servicios/producto.service";
+import { CommonModule } from '@angular/common';
 
 @Component({
- selector: 'app-tienda',
- standalone: true,
- imports: [
-   ProductoComponent
- ],
- templateUrl: './tienda.component.html',
- styleUrl: './tienda.component.scss'
+  selector: 'app-tienda',
+  standalone: true,
+  imports: [
+    ProductoComponent, CommonModule
+  ],
+  templateUrl: './tienda.component.html',
+  styleUrls: ['./tienda.component.scss']
 })
-export class TiendaComponent {
+export class TiendaComponent implements OnInit {
   listaDeProductos: Producto[] = [];
   productoService: ProductoService = inject(ProductoService);
 
-  
   ngOnInit(): void {
     this.obtenerProductos();
   }
 
   obtenerProductos(): void {
     this.productoService.obtenerTodosLosProductos().subscribe(
-      (data: Producto[][]) => {
-        // Concatenar todos los arrays de productos en uno solo
-        this.listaDeProductos = data.reduce((acc, array) => acc.concat(array), []);
-        console.log(data);
+      (data: Producto[]) => {
+        this.listaDeProductos = data;
+        console.log(this.listaDeProductos)
       },
       error => {
         console.error('Error al obtener los productos', error);
@@ -42,4 +41,5 @@ export class TiendaComponent {
   getProductosActuales(): Producto[] {
     return this.listaDeProductos;
   }
+  
 }
