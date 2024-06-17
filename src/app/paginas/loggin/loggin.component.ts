@@ -1,26 +1,26 @@
-// login.component.ts
-
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [],
   templateUrl: './loggin.component.html',
-  styleUrl: './loggin.component.scss'
+  styleUrls: ['./loggin.component.scss']
 })
 export class LogginComponent {
-  @ViewChild('emailInput') emailInput!: ElementRef;
-  @ViewChild('passwordInput') passwordInput!: ElementRef;
+  constructor(private http: HttpClient, private router: Router) {}
 
-  constructor(private router: Router) { }
+  login() {
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
 
-  enviarFormulario(email: string, password: string) {
-    this.emailInput.nativeElement.value = '';
-    this.passwordInput.nativeElement.value = '';
-  }
-  irTienda(){
-    this.router.navigate(['/tienda'])
+    this.http.post('http://localhost:3000/api/login', { email, password })
+      .subscribe((response: any) => {
+        if (response.success) {
+          this.router.navigate(['/tienda']);
+        } else {
+          alert('Invalid credentials');
+        }
+      });
   }
 }
