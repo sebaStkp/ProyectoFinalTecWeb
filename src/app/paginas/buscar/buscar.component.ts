@@ -5,6 +5,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Producto } from '../../interfaces/product';
 import { ProductoComponent } from '../../elementos/producto/producto.component';
 import { BuscarService } from '../../servicios/buscar.service';
+import { ProductoService } from '../../servicios/producto.service';
 
 @Component({
   selector: 'app-buscar',
@@ -17,26 +18,39 @@ import { BuscarService } from '../../servicios/buscar.service';
 
 export class BuscarComponent implements OnInit {
   query: string = '';
-  results: Producto[] = []; // Ajusta el tipo según la estructura de tus datos
-  buscarService: BuscarService = inject(BuscarService)
+  results: Producto[] = []; 
+  listaProductos: Producto[] = [];
   constructor(
     private route: ActivatedRoute, 
     private http: HttpClient,
     private router: Router,
+    private productoService: ProductoService
   ) {}
 
+
+  
   ngOnInit() {
+    this.obtenerProductos();
     this.route.queryParams.subscribe(params => {
       this.query = params['q'];
-      if(this.query.length == 0){
-        this.router.navigate(['/tienda'])
-      }
       this.search(this.query);
     });
   }
 
+  obtenerProductos(): void {
+    this.productoService.obtenerTodosLosProductos().subscribe(
+      (data: Producto[]) => {
+        this.listaProductos = data;
+        console.log(this.listaProductos)
+      },
+      error => {
+        console.error('Error al obtener los productos', error);
+      }
+    );
+  }
+
   search(query: string) {
-    this.buscarService.search(query).subscribe((data)=>{
-      this.results= data
-    });
-  }}
+    this.results =this.listaProductos.filter(item =>
+      item.nombre.toLowerCase().includes(query.toLowerCase())
+    )}
+  }

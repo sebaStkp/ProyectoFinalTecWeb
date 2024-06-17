@@ -30,11 +30,15 @@ export class AppComponent {
   }
 
   onSearch() {
-    const query = this.searchControl.value;
+    const query = this.searchControl.value.trim(); 
     if (query) {
       this.router.navigate(['/buscar'], { queryParams: { q: query } });
+    } else {
+  
+      this.router.navigate(['/tienda']);
     }
   }
+  
 
   añadirAlCarrito(producto: Producto) {
     this.carritoService.aniadirAlCarrito(producto);
@@ -55,4 +59,5 @@ export class AppComponent {
   getItemsCount(): number {
     return this.carritoService.getItemsCount();
   }
+
 }

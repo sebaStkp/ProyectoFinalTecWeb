@@ -25,7 +25,6 @@ export class TiendaComponent implements OnInit {
     this.productoService.obtenerTodosLosProductos().subscribe(
       (data: Producto[]) => {
         this.listaDeProductos = data;
-        console.log(this.listaDeProductos)
       },
       error => {
         console.error('Error al obtener los productos', error);

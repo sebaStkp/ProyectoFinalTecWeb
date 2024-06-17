@@ -4,13 +4,13 @@
   <span> Items</span>
 </div>
 
-<div *ngIf="carrito.length > 0">
+<div *ngIf="!elementsCarrito()">
   <div *ngFor="let producto of carrito; trackBy: trackById" class="contenedor-producto">
     <h2 class="titulo">{{ producto.nombre }}</h2>
     <div class="contenedor-imagen">
       <img [src]="producto.link" alt="">
     </div>
-    <span>Precio: {{ producto.precio }}</span>
+    <span>Precio: {{ producto.precio }} Bs.</span>
     <!-- <div class="cantidad-control">
       <button (click)="decrementarCantidad(producto)">-</button>
       <span>{{ producto.cantidad }}</span>
@@ -22,7 +22,7 @@
   </div> -->
 </div>
 
-<div *ngIf="items === 0">
+<div *ngIf="elementsCarrito()">
   No hay productos en el carrito.
 </div>
 

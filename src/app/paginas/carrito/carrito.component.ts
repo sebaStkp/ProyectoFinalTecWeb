@@ -18,8 +18,10 @@ export class CarritoComponent {
   noProductos: boolean = false;
 
   ngOnInit() {
-    this.carrito = this.appComponent.getCarrito().map(producto => ({ ...producto, cantidad: 1 }));
+    this.carrito = this.appComponent.getCarrito().map(producto => (
+      { ...producto, cantidad: 1 }));
     this.items = this.carrito.length;
+    console.log(this.carrito.length)
   }
 
   // incrementarCantidad(producto: Producto) {
@@ -38,5 +40,8 @@ export class CarritoComponent {
 
   trackById(index: number, item: Producto): number {
     return item.id_producto;
+  }
+  elementsCarrito():boolean {
+    return this.carrito.length === 0;
   }
 }
