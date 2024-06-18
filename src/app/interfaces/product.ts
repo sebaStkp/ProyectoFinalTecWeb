@@ -42,7 +42,7 @@ export interface Producto {
 
 
   export interface Lacteo extends Producto {
-    peso?: number;
+    peso: number;
     fecha_expiracion: string;
   }
 

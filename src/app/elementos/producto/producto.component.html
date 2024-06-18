@@ -10,12 +10,11 @@
     <span>Precio: </span><span>{{ producto.precio }} Bs.</span>
   </div>
   <div class="cont-botones">
-    <button [routerLink]="['/detalles', producto.id_producto]">Ver detalles</button>
-    <button *ngIf="!isInCart()" (click)="aniadirAlCarrito()">Añadir</button>
-    <button *ngIf="isInCart()" (click)="eliminarItemCarrito()">Eliminar</button>
+      <!-- Utiliza [routerLink] para enlazar dinámicamente el enlace basado en producto.id_producto -->
+      <button [routerLink]="['/detalles',producto.categoria, producto.id_producto]">Ver detalles</button>
+      <!-- Usa *ngIf para mostrar u ocultar el botón según el estado de isInCart() -->
+      <button *ngIf="!isInCart()" (click)="aniadirAlCarrito()">Añadir</button>
+      <button *ngIf="isInCart()" (click)="eliminarItemCarrito()">Eliminar</button>
 
-    <!-- Mostrar solo si el usuario es admin -->
-    <button *ngIf="isAdmin()" (click)="eliminarProducto()">Eliminar Producto</button>
-    <button *ngIf="isAdmin()" (click)="editarProducto()">Editar Producto</button>
   </div>
 </div>
