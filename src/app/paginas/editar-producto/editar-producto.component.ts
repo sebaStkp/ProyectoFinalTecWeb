@@ -1,21 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Producto, Carne, Bebida, Cosmetico, FrutaVerdura, Hogar, Lacteo, Panaderia, Ropa, SaludMedicamento, SnackGolosina } from '../../interfaces/product';
+import { Bebida, Carne, Cosmetico, FrutaVerdura, Hogar, Lacteo, Panaderia, Producto, Ropa, SaludMedicamento, SnackGolosina } from '../../interfaces/product';
+import { ActivatedRoute } from '@angular/router';
 import { BaseDatosService } from '../../servicios/base-datos.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-formulario-producto',
-  templateUrl: './formulario-producto.component.html',
-  styleUrls: ['./formulario-producto.component.scss'],
+  selector: 'app-editar-producto',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './editar-producto.component.html',
+  styleUrl: './editar-producto.component.scss'
 })
-export class FormularioProductoComponent implements OnInit {
+export class EditarProductoComponent implements OnInit {
   productoForm!: FormGroup;
-  categorias: string[] = ['Carne', 'Bebida', 'Cosmetico', 'FrutaVerdura', 'Hogar', 'Lacteo', 'Panaderia', 'Ropa', 'SaludMedicamento', 'Snacks_Golosinas'];
+  categorias: string[] = ['Carnes', 'Bebidas', 'Cosmeticos', 'Frutas_Verduras', 'Hogar', 'Lacteos', 'Panaderia', 'Ropa', 'Salud_Medicamentos', 'Snacks_Golosinas'];
+  productoId!: number;
+  productoCategoria!: string;
 
-  constructor(private fb: FormBuilder, private baseDatosService: BaseDatosService) {}
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private baseDatosService: BaseDatosService
+  ) { }
 
   ngOnInit(): void {
     this.productoForm = this.fb.group({
@@ -40,8 +47,29 @@ export class FormularioProductoComponent implements OnInit {
       dosis: [''],
       tipo_snack: ['']
     });
-    
-  }
+
+    const id = this.route.snapshot.paramMap.get('id');
+    const categoria = this.route.snapshot.paramMap.get('categoria');
+    console.log("id:", id," categoria:", categoria)
+    if (id && categoria) {
+      this.productoId = +id;
+      this.productoCategoria = categoria;
+      
+      // Obtener y cargar el producto para edición
+      this.baseDatosService.obtenerProductoPorId(this.productoId, this.productoCategoria).subscribe(
+        (producto) => {
+          this.productoForm.patchValue({
+            id_producto: this.productoId, // Asegúrate de que id_producto esté correctamente asignado aquí
+            nombre: producto.nombre,
+            precio: producto.precio,
+            categoria: producto.categoria,
+            link: producto.link,
+            // Completa el resto de los campos según la categoría
+          });
+        },
+        (error) => console.error('Error al obtener el producto:', error)
+      );
+  }}
 
   onSubmit(): void {
     const productoData = this.productoForm.value;
@@ -83,19 +111,16 @@ export class FormularioProductoComponent implements OnInit {
         break;
     }
 
-
-  // const productoEditar = this.baseDatosService.getProductoEditar(); 
-  // if (productoEditar) {
-  //   this.productoForm.patchValue(productoEditar); 
-  // }
-
-    if (!producto.id_producto) {
-      this.baseDatosService.agregarProducto(producto).subscribe(
-        (productoAgregado) => {
-          console.log('Producto agregado:', productoAgregado);
+    if (this.productoId) {
+      // Actualizar producto existente
+      console.log("entra aqui")
+      console.log(producto)
+      this.baseDatosService.actualizarProducto(producto).subscribe(
+        (productoActualizado) => {
+          console.log('Producto actualizado:', productoActualizado);
         },
         (error) => {
-          console.error('Error al agregar producto:', error);
+          console.error('Error al actualizar producto:', error);
         }
       );
     } 
