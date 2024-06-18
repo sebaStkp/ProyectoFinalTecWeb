@@ -8,6 +8,9 @@ import { BuscarComponent } from './paginas/buscar/buscar.component';
 import { LogginComponent } from './paginas/loggin/loggin.component';
 import { FormularioProductoComponent } from './paginas/formulario-producto/formulario-producto.component';
 import { ProductosComponent } from './productos/productos.component';
+import { RegisterComponent } from './paginas/register/register.component';
+import { Component } from '@angular/core';
+import { AdministradorComponent } from './paginas/administrador/administrador.component';
 
 
 import { EditarProductoComponent } from './paginas/editar-producto/editar-producto.component';
@@ -22,7 +25,9 @@ export const routes: Routes = [
     { path: 'detalles/:id', component: DetallesComponent },
     { path: 'buscar', component: BuscarComponent },
     { path: 'aniadir', component: FormularioProductoComponent },
+    { path: '**', component: PaginaNoEncontradaComponent },
+    {path:'register',component: RegisterComponent},
+    {path:'loginAdmin',component:AdministradorComponent},
     { path: 'editar/:id/:categoria', component: EditarProductoComponent },
-    { path: '**', component: PaginaNoEncontradaComponent }
 
 ];
