@@ -15,9 +15,20 @@
       <div>
         <label for="categoria">Categoría:</label>
         <select id="categoria" formControlName="categoria">
-          <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+          <option value="">Selecciona una categoria</option>
+          <option value="Lacteos">Lacteos</option>
+          <option value="Carnes">Carnes</option>
+          <option value="Frutas_Verduras">Frutas y Verduras</option>
+          <option value="Panaderia">Panaderia</option>
+          <option value="Snacks_Golosinas">Snacks y Golosinas</option>
+          <option value="Bebidas">Bebidas</option>
+          <option value="Cosmeticos">Cosmeticos</option>
+          <option value="Salud_Medicamentos">Salud y Medicamentos</option>
+          <option value="Hogar">Hogar</option>
+          <option value="Ropa">Ropa</option>
         </select>
       </div>
+      
   
       <div>
         <label for="link">Link:</label>
@@ -25,7 +36,7 @@
       </div>
   
       <!-- Campos específicos según la categoría -->
-      <div *ngIf="productoForm.get('categoria')?.value === 'Carne'">
+      <div *ngIf="productoForm.get('categoria')?.value === 'Carnes'">
         <div>
           <label for="tipo_carne">Tipo de Carne:</label>
           <input id="tipo_carne" formControlName="tipo_carne" type="text">
@@ -40,7 +51,7 @@
         </div>
       </div>
   
-      <div *ngIf="productoForm.get('categoria')?.value === 'Bebida'">
+      <div *ngIf="productoForm.get('categoria')?.value === 'Bebidas'">
         <div>
           <label for="volumen">Volumen:</label>
           <input id="volumen" formControlName="volumen" type="number" step="0.01">
@@ -51,7 +62,7 @@
         </div>
       </div>
   
-      <div *ngIf="productoForm.get('categoria')?.value === 'Cosmetico'">
+      <div *ngIf="productoForm.get('categoria')?.value === 'Cosmeticos'">
         <div>
           <label for="tipo_cosmetico">Tipo de Cosmético:</label>
           <input id="tipo_cosmetico" formControlName="tipo_cosmetico" type="text">
@@ -62,7 +73,7 @@
         </div>
       </div>
   
-      <div *ngIf="productoForm.get('categoria')?.value === 'FrutaVerdura'">
+      <div *ngIf="productoForm.get('categoria')?.value === 'Frutas_Verduras'">
         <div>
           <label for="tipo_producto">Tipo de Producto:</label>
           <input id="tipo_producto" formControlName="tipo_producto" type="text">
@@ -88,7 +99,7 @@
         </div>
       </div>
   
-      <div *ngIf="productoForm.get('categoria')?.value === 'Lacteo'">
+      <div *ngIf="productoForm.get('categoria')?.value === 'Lacteos'">
         <div>
           <label for="peso">Peso:</label>
           <input id="peso" formControlName="peso" type="number" step="0.01">
@@ -121,7 +132,7 @@
         </div>
       </div>
   
-      <div *ngIf="productoForm.get('categoria')?.value === 'SaludMedicamento'">
+      <div *ngIf="productoForm.get('categoria')?.value === 'Salud_Medicamentos'">
         <div>
           <label for="tipo_producto">Tipo de Producto:</label>
           <input id="tipo_producto" formControlName="tipo_producto" type="text">
@@ -148,7 +159,7 @@
       </div>
   
       <button type="submit">Guardar Producto</button>
-      <!-- <button type="button" (click)="eliminarProducto()" *ngIf="productoForm.get('id_producto').value">Eliminar Producto</button> -->
+      
 
     </form>
   </div>

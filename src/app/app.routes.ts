@@ -18,5 +18,6 @@ export const routes: Routes = [
     { path: 'detalles/:id', component: DetallesComponent },
     { path: 'buscar', component: BuscarComponent },
     { path: 'aniadir', component: FormularioProductoComponent },
+    { path: 'producto/editar/:id/:categoria', component: FormularioProductoComponent },
     { path: '**', component: PaginaNoEncontradaComponent }
 ];

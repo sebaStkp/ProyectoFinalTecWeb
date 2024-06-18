@@ -40,6 +40,7 @@ export class FormularioProductoComponent implements OnInit {
       dosis: [''],
       tipo_snack: ['']
     });
+    
   }
 
   onSubmit(): void {
@@ -47,22 +48,22 @@ export class FormularioProductoComponent implements OnInit {
     let producto: Producto;
 
     switch (productoData.categoria) {
-      case 'Carne':
+      case 'Carnes':
         producto = { ...productoData } as Carne;
         break;
-      case 'Bebida':
+      case 'Bebidas':
         producto = { ...productoData } as Bebida;
         break;
-      case 'Cosmetico':
+      case 'Cosmeticos':
         producto = { ...productoData } as Cosmetico;
         break;
-      case 'FrutaVerdura':
+      case 'Frutas_Verduras':
         producto = { ...productoData } as FrutaVerdura;
         break;
       case 'Hogar':
         producto = { ...productoData } as Hogar;
         break;
-      case 'Lacteo':
+      case 'Lacteos':
         producto = { ...productoData } as Lacteo;
         break;
       case 'Panaderia':
@@ -71,7 +72,7 @@ export class FormularioProductoComponent implements OnInit {
       case 'Ropa':
         producto = { ...productoData } as Ropa;
         break;
-      case 'SaludMedicamento':
+      case 'Salud_Medicamentos':
         producto = { ...productoData } as SaludMedicamento;
         break;
       case 'Snacks_Golosinas':

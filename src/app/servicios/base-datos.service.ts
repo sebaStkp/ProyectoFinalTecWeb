@@ -10,25 +10,26 @@ import { ProductoService } from './producto.service';
 })
 export class BaseDatosService {
   private urls: Record<string, string> = {
-    Carne: 'http://localhost:3000/carnes',
-    Bebida: 'http://localhost:3000/bebidas',
-    Cosmetico: 'http://localhost:3000/cosmeticos',
-    FrutaVerdura: 'http://localhost:3000/frutas_verduras',
+    Carnes: 'http://localhost:3000/carnes',
+    Bebidas: 'http://localhost:3000/bebidas',
+    Cosmeticos: 'http://localhost:3000/cosmeticos',
+    Frutas_Verduras: 'http://localhost:3000/frutas_verduras',
     Hogar: 'http://localhost:3000/hogar',
-    Lacteo: 'http://localhost:3000/lacteos',
+    Lacteos: 'http://localhost:3000/lacteos',
     Panaderia: 'http://localhost:3000/panaderia',
     Ropa: 'http://localhost:3000/ropa',
-    SaludMedicamento: 'http://localhost:3000/medicamentos',
+    Salud_Medicamentos: 'http://localhost:3000/medicamentos',
     Snacks_Golosinas: 'http://localhost:3000/snacks'
   };
   listaDeProductos: Producto[] = [];
 
   constructor(private http: HttpClient, private productoService: ProductoService) {}
 
-  ngOnInit(): void {
-    // No es necesario implementar ngOnInit en un servicio
-  }
 
+  getProductoEditar(id: number, categoria: string): Observable<Producto> {
+    const url = `${this.getUrlByCategoria(categoria)}/${id}`;
+    return this.http.get<Producto>(url);
+  }
   obtenerProductos(): void {
     this.productoService.obtenerTodosLosProductos().subscribe(
       (data: Producto[]) => {
@@ -51,21 +52,21 @@ export class BaseDatosService {
   actualizarProducto(producto: Producto): Observable<Producto> {
     const url = `${this.getUrlByCategoria(producto.categoria)}/${producto.id_producto}`;
     return this.http.put<Producto>(url, producto).pipe(
-      catchError((error) => {
-        throw error; // Manejo básico de errores, ajusta según necesites
-      })
+        catchError((error) => {
+            throw error; // Manejo básico de errores, ajusta según necesites
+        })
     );
-  }
+}
 
-  // Eliminar un producto según su tipo y ID
-  eliminarProducto(id: number, categoria: string): Observable<any> {
+eliminarProducto(id: number, categoria: string): Observable<any> {
     const url = `${this.getUrlByCategoria(categoria)}/${id}`;
+    console.log(url)
     return this.http.delete(url).pipe(
-      catchError((error) => {
-        throw error; // Manejo básico de errores, ajusta según necesites
-      })
+        catchError((error) => {
+            throw error; // Manejo básico de errores, ajusta según necesites
+        })
     );
-  }
+}
 
   // Obtener productos por ID según su tipo
   obtenerProductoPorId(id: number, categoria: string): Observable<Producto> {
