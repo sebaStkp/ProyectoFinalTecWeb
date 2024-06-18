@@ -8,6 +8,7 @@ import { DetallesComponent } from './paginas/detalles/detalles.component';
 import { BuscarComponent } from './paginas/buscar/buscar.component';
 import { LogginComponent } from './paginas/loggin/loggin.component';
 import { FormularioProductoComponent } from './paginas/formulario-producto/formulario-producto.component';
+import { EditarProductoComponent } from './paginas/editar-producto/editar-producto.component';
 export const routes: Routes = [
     { path: 'inicio', component: LogginComponent },
     { path: 'tienda', component: TiendaComponent },
@@ -18,6 +19,6 @@ export const routes: Routes = [
     { path: 'detalles/:id', component: DetallesComponent },
     { path: 'buscar', component: BuscarComponent },
     { path: 'aniadir', component: FormularioProductoComponent },
-    { path: 'producto/editar/:id/:categoria', component: FormularioProductoComponent },
+    { path: 'editar/:id/:categoria', component: EditarProductoComponent },
     { path: '**', component: PaginaNoEncontradaComponent }
 ];

@@ -22,7 +22,7 @@ export class BaseDatosService {
     Snacks_Golosinas: 'http://localhost:3000/snacks'
   };
   listaDeProductos: Producto[] = [];
-
+  private baseUrl = 'http://localhost:3000';
   constructor(private http: HttpClient, private productoService: ProductoService) {}
 
 
@@ -51,6 +51,7 @@ export class BaseDatosService {
 
   actualizarProducto(producto: Producto): Observable<Producto> {
     const url = `${this.getUrlByCategoria(producto.categoria)}/${producto.id_producto}`;
+    console.log(url)
     return this.http.put<Producto>(url, producto).pipe(
         catchError((error) => {
             throw error; // Manejo básico de errores, ajusta según necesites
@@ -68,11 +69,10 @@ eliminarProducto(id: number, categoria: string): Observable<any> {
     );
 }
 
-  // Obtener productos por ID según su tipo
-  obtenerProductoPorId(id: number, categoria: string): Observable<Producto> {
-    const url = `${this.urls[categoria]}/${id}`;
-    return this.http.get<Producto>(url);
-  }
+obtenerProductoPorId(id: number, categoria: string): Observable<Producto> {
+  const url = `${this.getUrlByCategoria(categoria)}/${id}`;
+  return this.http.get<Producto>(url);
+}
 
   // Obtener todos los productos de todos los tipos
   obtenerTodosLosProductos(): Observable<Producto[]> {

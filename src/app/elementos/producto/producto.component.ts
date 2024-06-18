@@ -1,6 +1,6 @@
 import {Component, Input, inject} from '@angular/core';
 import {Producto} from "../../interfaces/product";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { AppComponent } from '../../app.component';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../servicios/carrito.service';
@@ -16,11 +16,12 @@ import { BaseDatosService } from '../../servicios/base-datos.service';
 })
 export class ProductoComponent {
  @Input() producto!: Producto;
- constructor(){
+ constructor(private route: Router){
   
  }
  private carritoService: CarritoService = inject(CarritoService);
  private baseDatosService: BaseDatosService = inject(BaseDatosService);
+ private router: Router = inject(Router);
 
   aniadirAlCarrito() {
     this.carritoService.aniadirAlCarrito(this.producto);
@@ -38,12 +39,17 @@ export class ProductoComponent {
       this.baseDatosService.eliminarProducto(this.producto.id_producto, this.producto.categoria).subscribe(
         () => {
           console.log('Producto eliminado correctamente');
-          // Aquí puedes añadir cualquier lógica adicional después de eliminar el producto
+         
         },
         (error) => {
           console.error('Error al eliminar el producto:', error);
         }
       );
     }
+    this.route.navigate(["/tienda"]);
+  }
+  editarProducto(): void {
+    this.router.navigate(['/editar', this.producto.id_producto, this.producto.categoria]);
   }
 }
+
