@@ -5,6 +5,7 @@ import { AppComponent } from '../../app.component';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../servicios/carrito.service';
 import { BaseDatosService } from '../../servicios/base-datos.service';
+import { AuthService } from '../../auth.service';
 
 
 @Component({
@@ -16,12 +17,15 @@ import { BaseDatosService } from '../../servicios/base-datos.service';
 })
 export class ProductoComponent {
  @Input() producto!: Producto;
- constructor(private route: Router){
+ constructor(private route: Router,private authService: AuthService){
   
  }
  private carritoService: CarritoService = inject(CarritoService);
  private baseDatosService: BaseDatosService = inject(BaseDatosService);
  private router: Router = inject(Router);
+ isAdmin(): boolean {
+  return this.authService.isAdmin();
+}
 
   aniadirAlCarrito() {
     this.carritoService.aniadirAlCarrito(this.producto);

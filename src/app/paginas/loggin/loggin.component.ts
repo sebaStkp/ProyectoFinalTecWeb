@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./loggin.component.scss']
 })
 export class LogginComponent {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,private authService: AuthService) {}
 
   login() {
     const email = (document.getElementById('email') as HTMLInputElement).value;
@@ -17,6 +18,7 @@ export class LogginComponent {
     this.http.post('http://localhost:3000/api/login', { email, password })
       .subscribe((response: any) => {
         if (response.success) {
+          this.authService.loginAsClient();
           this.router.navigate(['/inicio']);
         } else {
           alert('Invalid credentials');
