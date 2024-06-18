@@ -9,6 +9,8 @@ import { LogginComponent } from './paginas/loggin/loggin.component';
 import { FormularioProductoComponent } from './paginas/formulario-producto/formulario-producto.component';
 import { ProductosComponent } from './productos/productos.component';
 import { RegisterComponent } from './paginas/register/register.component';
+import { Component } from '@angular/core';
+import { AdministradorComponent } from './paginas/administrador/administrador.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
@@ -21,6 +23,7 @@ export const routes: Routes = [
     { path: 'buscar', component: BuscarComponent },
     { path: 'aniadir', component: FormularioProductoComponent },
     {path:'register',component: RegisterComponent},
+    {path:'loginAdmin',component:AdministradorComponent},
     { path: '**', component: PaginaNoEncontradaComponent }
 
 ];
