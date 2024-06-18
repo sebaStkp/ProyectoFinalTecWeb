@@ -13,10 +13,10 @@ export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'tienda', component: TiendaComponent },
     { path: 'productos/:categoria', component: ProductosComponent },
+    { path: 'detalles/:categoria/:id', component: DetallesComponent },
     { path: 'contactanos', component: ContactanosComponent },
     { path: 'loggin', component: LogginComponent },
     { path: '', redirectTo: 'loggin', pathMatch: 'full' },
-    { path: 'detalles/:id', component: DetallesComponent },
     { path: 'buscar', component: BuscarComponent },
     { path: 'aniadir', component: FormularioProductoComponent },
     { path: '**', component: PaginaNoEncontradaComponent }

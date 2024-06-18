@@ -33,28 +33,8 @@ export class ProductoService {
       map((responses: Producto[][]) => responses.flat())
     );
   }
-
-  obtenerProductoPorId(id: number): Observable<Producto> {
-    return this.http.get<Producto>(`${this.url}/${id}`);
+  obtenerProductoPorId(categoria: string, id: number): Observable<Producto> {
+    return this.http.get<Producto>(`${this.url}/${categoria}/${id}`);
   }
 
-  obtenerProductosPorCategoria(categoria: Categoria): Observable<Producto[]> {
-    const url = this.urls[categoria];
-    return this.http.get<Producto[]>(url);
-  }
-
-  obtenerProductosOrganizadosPorCategoria(): Observable<{ [key: string]: Producto[] }> {
-    return this.obtenerTodosLosProductos().pipe(
-      map((productos: Producto[]) => {
-        const productosPorCategoria: { [key: string]: Producto[] } = {};
-        productos.forEach(producto => {
-          if (!productosPorCategoria[producto.categoria]) {
-            productosPorCategoria[producto.categoria] = [];
-          }
-          productosPorCategoria[producto.categoria].push(producto);
-        });
-        return productosPorCategoria;
-      })
-    );
-  }
 }
