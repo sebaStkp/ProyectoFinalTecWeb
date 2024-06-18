@@ -15,6 +15,7 @@ import { AdministradorComponent } from './paginas/administrador/administrador.co
 
 import { EditarProductoComponent } from './paginas/editar-producto/editar-producto.component';
 
+
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'tienda', component: TiendaComponent },
@@ -25,9 +26,8 @@ export const routes: Routes = [
     { path: 'detalles/:id', component: DetallesComponent },
     { path: 'buscar', component: BuscarComponent },
     { path: 'aniadir', component: FormularioProductoComponent },
-    { path: '**', component: PaginaNoEncontradaComponent },
     {path:'register',component: RegisterComponent},
     {path:'loginAdmin',component:AdministradorComponent},
     { path: 'editar/:id/:categoria', component: EditarProductoComponent },
-
+    { path: '**', component: PaginaNoEncontradaComponent },
 ];
