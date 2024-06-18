@@ -1,6 +1,5 @@
 import { Injectable, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
 import { Producto } from '../interfaces/product';
 import { ProductoService } from './producto.service';
 

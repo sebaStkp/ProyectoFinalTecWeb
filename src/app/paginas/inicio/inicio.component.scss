@@ -1,0 +1,23 @@
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.categories button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.products {
+  margin-top: 20px;
+}
+
+.products ul {
+  list-style: none;
+  padding: 0;
+}
+
+.products li {
+  margin: 5px 0;
+}

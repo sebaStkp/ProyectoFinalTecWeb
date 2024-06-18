@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Producto } from '../../interfaces/product';
 import { ProductoComponent } from '../../elementos/producto/producto.component';
-import { BuscarService } from '../../servicios/buscar.service';
 import { ProductoService } from '../../servicios/producto.service';
 
 @Component({
@@ -18,17 +17,16 @@ import { ProductoService } from '../../servicios/producto.service';
 
 export class BuscarComponent implements OnInit {
   query: string = '';
-  results: Producto[] = []; 
+  results: Producto[] = [];
   listaProductos: Producto[] = [];
+
   constructor(
-    private route: ActivatedRoute, 
-    private http: HttpClient,
-    private router: Router,
+    private route: ActivatedRoute,
     private productoService: ProductoService
   ) {}
 
 
-  
+
   ngOnInit() {
     this.obtenerProductos();
     this.route.queryParams.subscribe(params => {

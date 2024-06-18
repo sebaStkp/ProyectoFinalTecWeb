@@ -11,7 +11,7 @@
       <img [src]="producto.link" alt="">
     </div>
     <span>Precio: {{ producto.precio }} Bs.</span>
-    <!-- <div class="cantidad-control">
+    <div class="cantidad-control">
       <button (click)="decrementarCantidad(producto)">-</button>
       <span>{{ producto.cantidad }}</span>
       <button (click)="incrementarCantidad(producto)">+</button>
@@ -19,7 +19,7 @@
   </div>
   <div class="total">
     <span>Total a pagar: {{ calcularTotal() | currency }}</span>
-  </div> -->
+  </div>
 </div>
 
 <div *ngIf="elementsCarrito()">

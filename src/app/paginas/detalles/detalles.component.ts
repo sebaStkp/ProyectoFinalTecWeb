@@ -22,7 +22,6 @@ export class DetallesComponent {
  @Input() producto!: Producto;
  constructor() {
   const idProducto = Number(this.route.snapshot.params['id']);
-  // this.detalleProducto = this.productoService.obtenerProductoPorId(idProducto)
   this.productoService.obtenerProductoPorId(idProducto).subscribe(
     data => this.detalleProducto = data
   )
@@ -41,4 +40,4 @@ isInCart(): boolean {
   return this.appComponent.isInCart(this.producto); // verifico que este en el carrito para manipular los botones
 }
 
-} 
+}

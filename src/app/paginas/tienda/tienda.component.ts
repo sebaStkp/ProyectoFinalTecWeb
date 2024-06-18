@@ -40,5 +40,5 @@ export class TiendaComponent implements OnInit {
   getProductosActuales(): Producto[] {
     return this.listaDeProductos;
   }
-  
+
 }
