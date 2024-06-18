@@ -33,7 +33,7 @@ export class EditarProductoComponent implements OnInit {
       link: ['', Validators.required],
       tipo_carne: [''],
       peso: [''],
-      fecha_expiracion: [''],
+      fecha_expiracion_lacteo: [''],
       volumen: [0],
       alcoholico: [false],
       tipo_cosmetico: [''],
@@ -45,7 +45,8 @@ export class EditarProductoComponent implements OnInit {
       tipo_ropa: [''],
       talla: [''],
       dosis: [''],
-      tipo_snack: ['']
+      tipo_snack: [''],
+      peso_lacteo: [0]
     });
 
     const id = this.route.snapshot.paramMap.get('id');

@@ -7,12 +7,11 @@ import { DetallesComponent } from './paginas/detalles/detalles.component';
 import { BuscarComponent } from './paginas/buscar/buscar.component';
 import { LogginComponent } from './paginas/loggin/loggin.component';
 import { FormularioProductoComponent } from './paginas/formulario-producto/formulario-producto.component';
-<<<<<<< HEAD
 import { ProductosComponent } from './productos/productos.component';
 
-=======
+
 import { EditarProductoComponent } from './paginas/editar-producto/editar-producto.component';
->>>>>>> editar
+
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'tienda', component: TiendaComponent },
